@@ -1,0 +1,83 @@
+@{
+    ViewData["Title"] = "生育服务手册";
+}
+
+<div class="container">
+     <h4 style="color:cornflowerblue">省卫计委_生育服务手册数据服务接口_人社局查询小技巧</h4>
+	<p>身份证号、姓名两个输入项，必须全部正确输入才可能查询到结果。</p>
+	<div style="margin:20px 0;"></div>
+	<table id="shengyutable" class="easyui-datagrid" title="生育服务手册" style="width:1100px;height:500px"
+			data-options="rownumbers:true,singleSelect:true,url:'',method:'get',toolbar:'#tb',footer:'#ft'">
+		<thead>
+			<tr>
+				<th data-options="field:'mothername',width:80">妻子姓名</th>
+				<th data-options="field:'motherid',width:180">妻子身份证号码</th>
+                    <th data-options="field:'motherdomicileaddress',title:'',width:130">妻子户籍所在地</th>
+                    <th data-options="field:'motherworkplace',title:'',width:130">妻子工作单位</th>
+                    <th data-options="field:'mothermaritalstatus',title:'',width:80">妻子婚姻状况</th>
+
+                    <th data-options="field:'fathername',title:'',width:80">丈夫姓名</th>
+                    <th data-options="field:'fatherid',title:'',width:180">丈夫身份证号码</th>
+                    <th data-options="field:'fatherdomicileaddress',title:'',width:110">丈夫户籍所在地</th>
+                    <th data-options="field:'fatherworkplace',title:'',width:110">丈夫工作单位</th>
+                    <th data-options="field:'fathermaritalstatus',title:'',width:80">丈夫婚姻状况</th>
+
+                    <th data-options="field:'birthmanageplace',title:'',width:110">计生管理地</th>
+                    <th data-options="field:'childorder',title:'',width:40">孩次</th>
+                    <th data-options="field:'birthdate',title:'',width:110">出生年月</th>
+                    <th data-options="field:'childsex',title:'',width:40">性别</th>
+                    <th data-options="field:'polcyattribute',title:'',width:40">政策属性</th>
+
+                    <th data-options="field:'birthrecordnumber',title:'',width:110">出生医学证明编号</th>
+                    <th data-options="field:'registerplace',title:'',width:110">登记单位</th>
+                    <th data-options="field:'ordernumber',title:'',width:110">序号</th>
+                    <th data-options="field:'registtime',title:'',width:110">登记时间</th>
+                    <th data-options="field:'marryregisttime',title:'',width:110">结婚登记日期</th>
+			</tr>
+		</thead>
+	</table>
+    
+	<div id="tb" style="padding:2px 5px;">
+		<input class="easyui-text" style="width:110px" id="name"  placeholder="父亲/母亲姓名">
+        <input class="easyui-text" style="width:210px" id="sfzh"placeholder="父亲/母亲身份证号">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" id="shengyusearch">搜索</a>
+	</div>
+	<div id="ft" style="padding:2px 5px;">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
+	</div>
+    <div class="row">&nbsp;</div>
+    <div class="row"> 
+         <div id="provincetip"></div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+                <!-- <input type="button" id="clickme" value="click me" /> -->
+            <hr />
+        </div>
+    </div>
+     <div class="card-deck mb-3 text-center">     
+      </div>
+  
+</div>
+<!-- <script src="/lib/signalr/dist/browser/signalr.js"></script> -->
+<!-- <script src="/js/shengyu.js"></script> -->
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#shengyusearch").click(function(){
+            if($(this).linkbutton('options').disabled==false){
+                var fqxm = document.getElementById("name").value;
+                var mqxm = document.getElementById("sfzh").value;
+                connection.invoke("shengyusearch",fqxm,mqxm).catch(function (err) {
+                    return console.error(err.toString());
+                });				
+				$('#shengyusearch').linkbutton('disable');
+				$("#provincetip").text("烟台市政务信息资源共享交换平台查询进行中，结果会自动返回，请稍等。。。")
+			}
+        });        
+    });
+</script>

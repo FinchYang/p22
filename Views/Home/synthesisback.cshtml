@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "综合搜索";
+}
+
+<div class="container">
+     <h4 style="color:cornflowerblue">烟台市公安局本地大数据服务综合查询小技巧</h4>
+	<p>身份证号、姓名、电话输入任意组合都可进行模糊匹配查询。</p>
+	<div style="margin:20px 0;"></div>
+	<div id="ttbigtabs" class="easyui-tabs" style="width:1150px;height:510px" data-options="toolbar:'#tb'">
+    	<div title="搜索条件" id="tb"  style="padding:10px" data-options="iconCls:'icon-search',closable:true">
+            <input class="easyui-text" style="width:210px" id="id_card"  placeholder="身份证号">
+            <input class="easyui-text" style="width:110px" id="fullname"  placeholder="姓名">
+            <input class="easyui-text" style="width:110px" id="phone"  placeholder="电话">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-search" id="searchAllButton">搜索</a>
+        </div>
+		<div title="出生医学证明" style="padding:10px" data-options="iconCls:'icon-tip',closable:true">
+			<table id="birthtable" class="easyui-datagrid" style="width:1100px;height:450px" data-options="rownumbers:true,singleSelect:true">
+                <thead>
+                    <tr>
+                        <th data-options="field:'bh',width:100">编号</th>
+                        <th data-options="field:'fqsfzhm',width:160">父亲身份证号码</th>
+                        <th data-options="field:'fqxm',width:100">父亲姓名</th>
+                        <th data-options="field:'mqsfzhm',width:160">母亲身份证号码</th>
+                        <th data-options="field:'mqxm',width:100">母亲姓名</th>
+                        <th data-options="field:'qfjgmc',width:200">签发机构名称</th>
+                        <th data-options="field:'xsecsrq',width:100">出生日期</th>
+                        <th data-options="field:'xsexm',width:100">新生儿姓名</th>
+                    </tr>
+                </thead>
+            </table>
+		</div>
+		<div title="农保参保" style="padding:10px" data-options="iconCls:'icon-tip',closable:true">
+			<table id="nongbaocanbaotable" class="easyui-datagrid"  style="width:1100px;height:450px"
+                    data-options="rownumbers:true,singleSelect:true">
+                <thead>
+                    <tr>
+                        <th data-options="field:'jbsj',width:150">经办时间</th>
+                        <th data-options="field:'jdmc',width:170">街道名称</th>
+                        <th data-options="field:'sqmc',width:170">社区名称</th>
+                        <th data-options="field:'xm',width:90">姓名</th>
+                        <th data-options="field:'sfzh',width:180">身份证号</th>
+                        <th data-options="field:'ryid',width:200">ryid</th>
+                        <th data-options="field:'grbh',width:70">个人编号</th>
+                    </tr>
+                </thead>
+            </table>
+		</div>
+		<div title="参保职工" data-options="iconCls:'icon-tip',closable:true" style="padding:10px">
+            <table id="canbaozhigongtable" class="easyui-datagrid" style="width:1100px;height:450px"	 
+                    data-options="rownumbers:true,singleSelect:true">
+                <thead>
+                    <tr>
+                        <th data-options="field:'jbrq',width:100">经办日期</th>
+                        <th data-options="field:'dwbh',width:160">单位编号</th>
+                      
+                        <th data-options="field:'lxdh',width:100">联系电话</th>
+                        <th data-options="field:'xm',width:100">姓名</th>
+                        <th data-options="field:'sfzh',width:200">身份证号</th>
+                        <th data-options="field:'ryid',width:200">ryid</th>
+
+                        <th data-options="field:'domicile',width:160">家庭住址</th>
+                    </tr>
+                </thead>
+            </table>
+		</div>
+        <div title="婚姻登记信息" data-options="iconCls:'icon-tip',closable:true" style="padding:10px">
+            <table id="hunyintable" class="easyui-datagrid"  style="width:900px;height:400px"
+                    data-options="rownumbers:true,singleSelect:true">
+                <thead>
+                    <tr>
+                        <th data-options="field:'cert_no',width:120">登记信息</th>
+                        <th data-options="field:'op_date',width:180">登记日期</th>
+                        <th data-options="field:'id_card',width:200">身份证号</th>
+                        <th data-options="field:'name',width:100">姓名</th>
+                    </tr>
+                </thead>
+            </table>
+		</div>
+        <div title="参保职工1" data-options="iconCls:'icon-tip',closable:true" style="padding:10px">
+            <table id="b111irthtable" class="easyui-datagrid" style="width:1100px;height:450px"	 
+                    data-options="rownumbers:true,singleSelect:true">
+                <thead>
+                    <tr>
+                        <th data-options="field:'bh',width:100">编号</th>
+                        <th data-options="field:'fqsfzhm',width:160">父亲身份证号码</th>
+                        <th data-options="field:'fqxm',width:100">父亲姓名</th>
+                        <th data-options="field:'mqsfzhm',width:160">母亲身份证号码</th>
+                        <th data-options="field:'mqxm',width:100">母亲姓名</th>
+                        <th data-options="field:'qfjgmc',width:200">签发机构名称</th>
+                        <th data-options="field:'xsecsrq',width:100">出生日期</th>
+                        <th data-options="field:'xsexm',width:100">新生儿姓名</th>
+                    </tr>
+                </thead>
+            </table>
+		</div>
+	</div>
+
+    <div class="row">&nbsp;</div>
+    <div class="row"> 
+        <!-- <div class="col-6">
+            <input type="text" id="ryid" style="width:25em" placeholder="社保人员编号" />
+            <br />
+            <input type="button" id="search_shebao" value="社保缴费搜索" />
+        </div> -->
+        <ul id="messagesList"></ul>
+         <div id="provincetip"></div>
+    </div>
+</div>
+<script src="/js/chat.js"></script>
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // $("#search_shebao").click(function(){
+        //     $("#provincetip").text("社保职工养老缴费历史查询进行中，数据量大，查询时间长，请稍等。。。")
+        // });
+        $("#searchAllButton").click(function(){
+            $("#provincetip").text("查询进行中，结果会自动返回，请稍等。。。")
+        });
+    });
+    
+		$(function(){
+			var tabs = $('#ttbigtabs').tabs().tabs('tabs');
+			for(var i=0; i<tabs.length; i++){
+				tabs[i].panel('options').tab.unbind().bind('mouseenter',{index:i},function(e){
+					$('#ttbigtabs').tabs('select', e.data.index);
+				});
+			}
+		});
+</script>

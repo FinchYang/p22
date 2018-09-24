@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "企业注册登记";
+}
+
+<div class="container">
+       <h4 style="color:cornflowerblue">省工商局_企业注册登记信息，法定代表人所在企业信息查询接口查询小技巧</h4>
+	<p>身份证号必须正确输入才可能查询到结果。</p>
+	<div style="margin:20px 0;"></div>
+	<table id="farentable" class="easyui-datagrid" title="企业注册登记" style="width:900px;height:400px"
+			data-options="rownumbers:true,singleSelect:true,url:'',method:'get',toolbar:'#tb',footer:'#ft'">
+		<thead>
+			<tr>
+				<th data-options="field:'apprdate',width:100">日期</th>
+				<th data-options="field:'cerno',width:170">身份证号</th>
+                <th data-options="field:'certype',width:30">类型</th>
+				<th data-options="field:'dom',width:240">地址</th>
+                <th data-options="field:'entname',width:220">名称</th>
+
+				<th data-options="field:'enttype',width:40">企业类型</th>
+                <th data-options="field:'enttypecn',width:140">企业类型中文</th>
+				<th data-options="field:'estdate',width:100">评估日期</th>
+                <th data-options="field:'industryco',width:40">industryco</th>
+				<th data-options="field:'industryphy',width:20">industryphy</th>
+                
+				<th data-options="field:'lerep',width:100">lerep</th>
+                <th data-options="field:'opfrom',width:100">开始日期</th>
+				<th data-options="field:'opscope',width:180">经营范围</th>
+                <th data-options="field:'opto',width:100">终止日期</th>
+				<th data-options="field:'regcap',width:30">regcap</th>
+                
+				<th data-options="field:'regcapcurcn',width:50">regcapcurcn</th>
+                <th data-options="field:'regno',width:100">regno</th>
+				<th data-options="field:'regorg',width:80">regorg</th>
+                <th data-options="field:'regorgcn',width:120">regorgcn</th>
+				<th data-options="field:'regstatecn',width:100">regstatecn</th>
+                
+				<th data-options="field:'tel',width:100">电话</th>
+                <th data-options="field:'uniscid',width:190">uniscid</th> 
+			</tr>
+		</thead>
+	</table>
+    
+	<div id="tb" style="padding:2px 5px;">
+		<input class="easyui-text" style="width:210px" id="sfzh"  placeholder="身份证号">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" id="farensearch">搜索</a>
+	</div>
+		<div id="ft" style="padding:2px 5px;">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
+	</div>
+    <div class="row">&nbsp;</div>
+        <div class="row">  
+         <div id="provincetip"></div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+  
+</div>
+
+<!-- <script src="/js/faren.js"></script> -->
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#farensearch").click(function(){
+			if($(this).linkbutton('options').disabled==false){
+				var mqxm = document.getElementById("sfzh").value;
+				connection.invoke("faren",mqxm).catch(function (err) {
+					return console.error(err.toString());
+				});
+				$('#farensearch').linkbutton('disable');
+				$("#provincetip").text("烟台市政务信息资源共享交换平台查询进行中，结果会自动返回，请稍等。。。")
+			}
+        });
+    });
+</script>

@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "外国人工作许可证";
+}
+<div class="container">
+      <h4 style="color:cornflowerblue">烟台市人力资源和社会保障局_外国人工作许可证_数据服务查询小技巧</h4>
+	<p>请输入英文字母才可能查询到结果。</p>
+	<div style="margin:20px 0;"></div>
+	<table id="foreignertable" class="easyui-datagrid" title="企业注册登记" style="width:1100px;height:400px"
+			data-options="rownumbers:true,singleSelect:true,url:'',method:'get',toolbar:'#tb',footer:'#ft'">
+		<thead>
+			<tr>
+				<th data-options="field:'sqrm',width:150">申请人名</th>
+				<th data-options="field:'gj',width:70">国籍</th>
+                <th data-options="field:'gzxkzbh',width:170">工作许可证编号</th>
+				<th data-options="field:'sqrcsrq',width:90">出生日期</th>
+                <th data-options="field:'sqrx',width:120">申请人姓</th>
+
+				<th data-options="field:'sqrxb',width:40">性别</th>
+                <th data-options="field:'yrdw',width:240">用人单位</th>
+				<th data-options="field:'yxqqsrq',width:100">有效期始</th>
+                <th data-options="field:'yxqzzrq',width:100">有效期止</th>
+			</tr>
+		</thead>
+	</table>
+    
+	<div id="tb" style="padding:2px 5px;">
+		<input class="easyui-text" style="width:210px" id="foreigner_name"  placeholder="外国人英文名字">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" id="search_foreigner">搜索</a>
+	</div>
+		<div id="ft" style="padding:2px 5px;">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
+	</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+         <div id="provincetip"></div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+                <!-- <input type="button" id="clickme" value="click me" /> -->
+        </div>
+    </div>
+     <div class="card-deck mb-3 text-center">
+</div>
+
+<!-- <script src="/js/share.js"></script> -->
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {		
+        $("#search_foreigner").click(function(){
+			if($(this).linkbutton('options').disabled==false){
+				var foreigner_name = document.getElementById("foreigner_name").value;   
+				connection.invoke("search_foreigner", foreigner_name).catch(function (err) {
+					return console.error(err.toString());
+				});
+				$('#search_foreigner').linkbutton('disable');
+				$("#provincetip").text("烟台市政务信息资源共享交换平台查询进行中，结果会自动返回，请稍等。。。")
+			}
+        });
+    });
+</script>
